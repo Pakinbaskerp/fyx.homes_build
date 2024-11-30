@@ -1,0 +1,44 @@
+.footer-container {
+  position: fixed;
+  bottom: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(253, 207, 41, 0.8); /* Semi-transparent yellow */
+  z-index: 1000;
+  padding: 15px 20px;
+  border-radius: 20px;
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.footer-container:hover {
+  background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover */
+}
+
+.footer-content {
+  display: inline-block;
+}
+
+.footer-nav .menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.footer-nav .menu li {
+  display: inline;
+}
+
+.footer-nav .menu li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  margin: 18px;
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.footer-nav .menu li a:hover {
+  color: #ffcc00; /* Highlight link color on hover */
+}
