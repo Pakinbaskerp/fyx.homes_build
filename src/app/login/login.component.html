@@ -1,0 +1,121 @@
+<div class="auth-container">
+  <!-- Tabs for Login and Register -->
+  <div *ngIf="true" class="tabs">
+    <ul class="tabs-nav">
+      <li [class.active]="isLoginTab" (click)="isLoginTab = true">Login</li>
+      <li [class.active]="!isLoginTab" (click)="isLoginTab = false">
+        Register
+      </li>
+    </ul>
+  </div>
+
+  <!-- Login Form -->
+  <form
+    *ngIf="isLoginTab"
+    (ngSubmit)="onLogin($event)"
+    #loginForm="ngForm"
+    novalidate
+    class="auth-form"
+  >
+    <label for="username">Username:</label>
+    <input
+      type="text"
+      id="username"
+      [(ngModel)]="username"
+      name="username"
+      required
+    />
+
+    <label for="password">Password:</label>
+    <input
+      type="password"
+      id="password"
+      [(ngModel)]="password"
+      name="password"
+      required
+    />
+
+    <button type="submit" class="submit-btn">Login</button>
+  </form>
+
+  <!-- Register Form -->
+  <form
+    *ngIf="!isLoginTab"
+    (ngSubmit)="onRegister($event)"
+    #registerForm="ngForm"
+    novalidate
+    class="auth-form"
+  >
+    <!-- User Type Selection -->
+
+    <!-- Email and Other Details -->
+    <div style="display: contents" *ngIf="isUser || isCarpender">
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        [(ngModel)]="email"
+        name="email"
+        required
+      />
+
+      <label for="firstName">First Name:</label>
+      <input
+        type="text"
+        id="firstName"
+        [(ngModel)]="firstName"
+        name="firstName"
+        required
+      />
+
+      <label for="lastName">Last Name:</label>
+      <input
+        type="text"
+        id="lastName"
+        [(ngModel)]="lastName"
+        name="lastName"
+        required
+      />
+
+      <label for="phoneNumber">Phone Number:</label>
+      <input
+        type="text"
+        id="phoneNumber"
+        [(ngModel)]="phoneNumber"
+        name="phoneNumber"
+        required
+      />
+
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        [(ngModel)]="registerPassword"
+        name="password"
+        required
+      />
+    </div>
+    <div class="user-type-toggle">
+      <input
+        type="radio"
+        id="isUser"
+        [(ngModel)]="userType"
+        name="userType"
+        value="user"
+        checked=""
+      />
+      <label for="isUser" class="toggle-option">User</label>
+
+      <input
+        type="radio"
+        id="isCarpender"
+        [(ngModel)]="userType"
+        name="userType"
+        value="carpenter"
+      />
+      <label for="isCarpender" class="toggle-option">Carpenter</label>
+    </div>
+
+    <button type="submit" class="submit-btn">Register</button>
+  </form>
+</div>

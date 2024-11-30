@@ -1,0 +1,148 @@
+/* Container for the whole auth section */
+.auth-container {
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f4f7fc;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+/* Tabs */
+.tabs-nav {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+  padding: 0;
+  list-style: none;
+  width: 60%;
+}
+
+.tabs-nav li {
+  cursor: pointer;
+  padding: 10px 20px;
+  background-color: #eee;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.tabs-nav li.active {
+  background-color: rgb(253, 207, 41);
+  color: white;
+}
+
+/* Form Styles */
+.auth-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Adds space between the fields */
+  animation: formSlideUp 0.6s ease-out;
+}
+
+.auth-form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.auth-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 90%; /* Makes the input field take up the full width of its container */
+}
+
+.auth-form input:focus {
+  border-color: rgb(253, 207, 41);
+  outline: none;
+}
+
+.submit-btn {
+  background-color: rgb(253, 207, 41);
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 30%; /* Makes the button take up the full width of the container */
+}
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Form Slide Up Animation */
+@keyframes formSlideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Toggle Container */
+.user-type-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 600px;
+  width: 300px;
+  margin-bottom: 20px;
+  padding: 0;
+  list-style: none;
+}
+
+/* Hide the radio buttons */
+.user-type-toggle input[type="radio"] {
+  display: none;
+}
+
+/* Toggle option styling */
+.user-type-toggle .toggle-option {
+  flex: 1;
+  text-align: center;
+  padding: 10px 2px;
+  cursor: pointer;
+  font-weight: bold;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+  color: #473d3d;
+  width: 3%;
+}
+
+/* Active toggle state */
+.user-type-toggle input[type="radio"]:checked + .toggle-option {
+  background-color: rgb(253, 207, 41);
+  color: white;
+  border-radius: 600px;
+}
+
+/* Animation for smooth switching */
+.user-type-toggle .toggle-option:first-child {
+  border-right: 1px solid #241f1f;
+}
+
+.user-type-toggle input[type="radio"]:checked:first-of-type + .toggle-option {
+  border-right: none;
+}
