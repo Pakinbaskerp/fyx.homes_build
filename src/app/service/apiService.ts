@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from '../../../common.constant';
-import { LoginResponse } from '../dtos/apiDtos';
+import { GetCategoryListDto, LoginResponse } from '../dtos/apiDtos';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +12,23 @@ export class AuthService {
   private baseApiUrl = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) {}
+
+
+  
+  getServiceList(token: string) {
+    
+      
+      const headers = new HttpHeaders({
+        Accept: '*/*',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      });
+  
+      const apiUrl = `${this.baseApiUrl}/api/product/category`;
+      return this.http.get<GetCategoryListDto[]>(apiUrl, { headers });
+    }
+  
+  
 
   loginUser(loginData: any) {
     console.log(loginData);
