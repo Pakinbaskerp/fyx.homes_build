@@ -5,8 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../service/apiService';
-import { GetCategoryListDto } from '../dtos/apiDtos';
+import { AuthService } from '../service/auth.service';
+import { GetCategoryListDto, LoginDto } from '../dtos/apiDtos';
 
 @Component({
   selector: 'app-login',
@@ -59,7 +59,6 @@ export class LoginComponent {
 
   onRegister(event: Event) {
     event.preventDefault();
-
     this.isUser = this.userType === 'user';
     this.isCarpender = this.userType === 'carpenter';
 
@@ -81,47 +80,52 @@ export class LoginComponent {
     });
   }
   
+
   onLogin(event: Event): void {
-    event.preventDefault();
+  event.preventDefault();
 
-    if (!this.username || !this.password) {
-      alert('Please enter both username and password.');
-      return;
-    }
-
-    const loginData = {
-      email: this.username,
-      password: this.password,
-    };
-
-    this.authService.loginUser(loginData).subscribe(
-      (response) => {
-        if (response && response.token) {
-          const token = response.token;
-
-          if (this.isJwt(token)) {
-            console.log('Valid JWT token:', token);
-            const payload = this.decodeJwt(token);
-            console.log('Decoded payload:', payload);
-
-            const userRole = payload.role;
-            if (userRole === 'User') {
-              this.router.navigate(['/dashboard']);
-            } else if (userRole === 'Admin') {
-              this.router.navigate(['/admin-dashboard']);
-            }
-
-            localStorage.setItem('authToken', token);
-          }
-        } else {
-          alert('Invalid credentials');
-        }
-      },
-      (error) => {
-        console.error('Login failed:', error);
-        alert('An error occurred during login. Please try again later.');
-      },
-    );
-
+  if (!this.username || !this.password) {
+    alert('Please enter both username and password.');
+    return;
   }
+
+  const loginData: LoginDto = {
+    email: this.username,
+    password: this.password,
+  };
+
+  this.authService.loginUser(loginData).subscribe({
+    next: (response) => {
+      if (response && response.token) {
+        const token = response.token;
+
+        if (this.isJwt(token)) {
+          console.log('Valid JWT token:', token);
+          const payload = this.decodeJwt(token);
+          console.log('Decoded payload:', payload);
+
+          const userRole = payload.role;
+          if (userRole === 'User') {
+            this.router.navigate(['/dashboard']);
+          } else if (userRole === 'Admin') {
+            this.router.navigate(['/admin-dashboard']);
+          }
+
+          localStorage.setItem('authToken', token);
+        }
+      } else {
+        alert('Invalid credentials');
+      }
+    },
+    error: (error) => {
+      console.error('Login failed:', error);
+      alert('An error occurred during login. Please try again later.');
+    },
+    complete: () => {
+      console.log('Login request completed');
+    }
+  });
+}
+
+  
 }
