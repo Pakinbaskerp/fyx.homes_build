@@ -11,3 +11,8 @@ export interface GetCategoryListDto {
   filePath: string;
   sortOrder: number;
 }
+
+export interface LoginDto {
+  email: string;
+  password: string;
+}
