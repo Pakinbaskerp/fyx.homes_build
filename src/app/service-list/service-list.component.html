@@ -1,0 +1,13 @@
+<div *ngIf="categories.length > 0; else noData">
+  <div class="category-list">
+    <div *ngFor="let category of categories" class="category-item">
+      <img [src]="category.filePath" alt="{{ category.categoryName }}" class="category-image" />
+      <h3>{{ category.categoryName }}</h3>
+      <p>{{ category.categoryDescription }}</p>
+    </div>
+  </div>
+</div>
+
+<ng-template #noData>
+  <p>No categories available.</p>
+</ng-template>
