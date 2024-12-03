@@ -1,0 +1,84 @@
+/* Styling the overlay (background behind the popup) */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);  /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;  /* Ensures the popup is above other elements */
+}
+
+/* Styling the actual popup content */
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling the close button */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  color: #000;
+}
+
+/* Heading styling */
+h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+/* Label styling */
+label {
+  font-size: 16px;
+  margin-bottom: 8px;
+  display: block;
+  color: #555;
+}
+
+/* Dropdown styling */
+select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+/* Display section for selected service details */
+.selected-service-details {
+  margin-top: 20px;
+}
+
+.selected-service-details h3 {
+  font-size: 20px;
+  color: #444;
+}
+
+.selected-service-details p {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Ensure the popup content is not too close to the edges */
+.popup-content p {
+  font-size: 14px;
+  color: #666;
+}

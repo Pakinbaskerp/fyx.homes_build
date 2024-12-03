@@ -15,38 +15,33 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   private platformId = inject(PLATFORM_ID);
-  
-  
-  
+
   isAuthenticated(): boolean {
     if (isPlatformBrowser(this.platformId)) {
       const token = localStorage.getItem('authToken');
       if (token && this.isJwt(token)) {
         try {
           const decoded: any = this.decodeJwt(token);
-          const currentTime = Math.floor(Date.now() / 1000); // current time in seconds
-          
-          // Check if the token has expired
+          const currentTime = Math.floor(Date.now() / 1000);
+
           if (decoded.exp && decoded.exp > currentTime) {
-            return true; // token is valid
+            return true;
           } else {
-            this.logout(); // Token has expired
+            this.logout();
             return false;
           }
         } catch (error) {
           console.error('Error decoding token:', error);
-          return false; // In case of error during decoding
+          return false;
         }
       }
-      return false; // Token doesn't exist or is not a valid JWT
+      return false;
     }
-    return false; // Not in the browser (server-side rendering)
+    return false;
   }
 
-  // Logout function to clear the token
   logout(): void {
     localStorage.removeItem('authToken');
-    // Perform other logout operations (e.g., redirect to login page)
   }
 
   isJwt(token: string): boolean {
