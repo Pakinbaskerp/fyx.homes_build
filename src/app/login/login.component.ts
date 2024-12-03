@@ -79,53 +79,50 @@ export class LoginComponent {
       }
     });
   }
-  
 
   onLogin(event: Event): void {
-  event.preventDefault();
+    event.preventDefault();
 
-  if (!this.username || !this.password) {
-    alert('Please enter both username and password.');
-    return;
-  }
-
-  const loginData: LoginDto = {
-    email: this.username,
-    password: this.password,
-  };
-
-  this.authService.loginUser(loginData).subscribe({
-    next: (response) => {
-      if (response && response.token) {
-        const token = response.token;
-
-        if (this.isJwt(token)) {
-          console.log('Valid JWT token:', token);
-          const payload = this.decodeJwt(token);
-          console.log('Decoded payload:', payload);
-
-          const userRole = payload.role;
-          if (userRole === 'User') {
-            this.router.navigate(['/dashboard']);
-          } else if (userRole === 'Admin') {
-            this.router.navigate(['/admin-dashboard']);
-          }
-
-          localStorage.setItem('authToken', token);
-        }
-      } else {
-        alert('Invalid credentials');
-      }
-    },
-    error: (error) => {
-      console.error('Login failed:', error);
-      alert('An error occurred during login. Please try again later.');
-    },
-    complete: () => {
-      console.log('Login request completed');
+    if (!this.username || !this.password) {
+      alert('Please enter both username and password.');
+      return;
     }
-  });
-}
 
-  
+    const loginData: LoginDto = {
+      email: this.username,
+      password: this.password,
+    };
+
+    this.authService.loginUser(loginData).subscribe({
+      next: (response) => {
+        if (response && response.token) {
+          const token = response.token;
+
+          if (this.isJwt(token)) {
+            console.log('Valid JWT token:', token);
+            const payload = this.decodeJwt(token);
+            console.log('Decoded payload:', payload);
+
+            const userRole = payload.role;
+            if (userRole === 'User') {
+              this.router.navigate(['/dashboard']);
+            } else if (userRole === 'Admin') {
+              this.router.navigate(['/admin-dashboard']);
+            }
+
+            localStorage.setItem('authToken', token);
+          }
+        } else {
+          alert('Invalid credentials');
+        }
+      },
+      error: (error) => {
+        console.error('Login failed:', error);
+        alert('An error occurred during login. Please try again later.');
+      },
+      complete: () => {
+        console.log('Login request completed');
+      },
+    });
+  }
 }

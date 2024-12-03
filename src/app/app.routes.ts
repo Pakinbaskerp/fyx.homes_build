@@ -7,10 +7,18 @@ import { AuthGuard } from './auth.guard'; // Import the AuthGuard
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard] },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin-dashboard',
+    component: AdminDashboardComponent,
+    canActivate: [AuthGuard],
+  },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: '**', redirectTo: 'login' } // Fallback route
+  { path: '**', redirectTo: 'login' }, // Fallback route
 ];
 
 @NgModule({

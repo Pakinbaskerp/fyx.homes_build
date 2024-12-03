@@ -10,12 +10,10 @@ import { ProductService } from '../service/product.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './service-list.component.html',
-  styleUrls: ['./service-list.component.css'] 
+  styleUrls: ['./service-list.component.css'],
 })
 export class ServiceListComponent implements OnInit {
-
   categories: GetCategoryListDto[] = [];
-    
 
   constructor(
     private router: Router,
@@ -28,16 +26,14 @@ export class ServiceListComponent implements OnInit {
   }
 
   getList(): void {
-    
-      this.productService.getServiceList().subscribe({
-        next: (data) => {
-          this.categories = data;
-          console.log('Categories fetched:', data);
-        },
-        error: (error) => {
-          console.error('Error fetching categories:', error);
-        }
-      });
-    
+    this.productService.getCategoryList().subscribe({
+      next: (data) => {
+        this.categories = data;
+        console.log('Categories fetched:', data);
+      },
+      error: (error) => {
+        console.error('Error fetching categories:', error);
+      },
+    });
   }
 }
