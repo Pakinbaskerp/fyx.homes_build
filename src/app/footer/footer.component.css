@@ -3,11 +3,11 @@
   bottom: 7px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgba(253, 207, 41, 0.8); /* Semi-transparent yellow */
-  z-index: 1000;
+  background-color: rgba(253, 207, 41, 0.8);
+  z-index: 999; /* Lower than the popup */
   padding: 15px 20px;
   border-radius: 20px;
-  transition: background-color 0.3s ease; /* Smooth transition */
+  transition: background-color 0.3s ease;
 }
 
 .footer-container:hover {
