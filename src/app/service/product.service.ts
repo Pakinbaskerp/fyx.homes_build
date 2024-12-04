@@ -1,6 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CreateServiceDto, GetCategoryListDto } from '../dtos/apiDtos';
+import {
+  CarpenterDetailsDto,
+  CreateServiceDto,
+  GetCategoryListDto,
+} from '../dtos/apiDtos';
 import { environment } from '../../../common.constant';
 
 @Injectable({
@@ -21,13 +25,25 @@ export class ProductService {
     return this.http.get<GetCategoryListDto[]>(apiUrl, { headers });
   }
 
-  getServiceList(categoryId : string){
+  getServiceList(categoryId: string) {
     const headers = new HttpHeaders({
       Accept: '*/*',
       'Content-Type': 'application/json',
     });
 
     const apiUrl = `${this.baseApiUrl}/api/product/category/service`;
-    return this.http.get<CreateServiceDto[]>(`${apiUrl}?category-id=${categoryId}`);
+    return this.http.get<CreateServiceDto[]>(
+      `${apiUrl}?category-id=${categoryId}`,
+    );
+  }
+
+  geCarpenderList() {
+    const headers = new HttpHeaders({
+      Accept: '*/*',
+      'Content-Type': 'application/json',
+    });
+
+    const apiUrl = `${this.baseApiUrl}/api/carpender/list`;
+    return this.http.get<CarpenterDetailsDto[]>(apiUrl, { headers });
   }
 }

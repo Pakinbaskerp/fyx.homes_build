@@ -1,37 +1,85 @@
 <div class="popup" *ngIf="isVisible">
-    <div class="popup-content">
-      <span class="close-button" (click)="closePopup()">&times;</span>
-      <h2>Welcome!</h2>
-  
-      <!-- Dropdown for categories -->
-      <label for="category">Select Category:</label>
-      <select id="category" [(ngModel)]="selectedCategory" (change)="getServiceList()">
-        <option *ngFor="let category of categories" [value]="category.id">
-          {{ category.categoryName }}
-        </option>
-      </select>
-  
-      <!-- Dropdown for services -->
-      <label for="service">Select Service:</label>
-      <select id="service" [(ngModel)]="selectedServiceId" (change)="getSelectedService()">
-        <option *ngFor="let service of services" [value]="service.id">
-          {{ service.serviceName }}
-        </option>
-      </select>
-  
-      <!-- Display selected service details -->
-      <div *ngIf="selectedService">
-        <h3>Selected Service Details:</h3>
-        <p><strong>Service Name:</strong> {{ selectedService.serviceName }}</p>
-        <p><strong>Service Description:</strong> {{ selectedService.serviceDescription }}</p>
-        <p><strong>Sort Order:</strong> {{ selectedService.sortOrder }}</p>
-        <p><strong>File Name:</strong> {{ selectedService.fileName }}</p>
-        <p><strong>File Path:</strong> {{ selectedService.filePath }}</p>
-        <p><strong>Price:</strong> {{ selectedService.price }}</p>
-        <p><strong>Currency:</strong> {{ selectedService.currency }}</p>
+  <div class="popup-content">
+    <span class="close-button" (click)="closePopup()">&times;</span>
+    <h2>Welcome!</h2>
+
+    <div class="dropdown-container">
+      <div class="dropdown-item">
+        <label for="category">Select Category:</label>
+        <div class="custom-dropdown">
+          <select
+            id="category"
+            [(ngModel)]="selectedCategory"
+            (change)="getServiceList()"
+          >
+            <option *ngFor="let category of categories" [value]="category.id">
+              {{ category.categoryName }}
+            </option>
+          </select>
+        </div>
       </div>
-  
-      <p>This is your custom popup content.</p>
+
+      <div class="dropdown-item">
+        <label for="service">Select Service:</label>
+        <div class="custom-dropdown">
+          <select
+            id="service"
+            [(ngModel)]="selectedServiceId"
+            (change)="getSelectedService()"
+          >
+            <option *ngFor="let service of services" [value]="service.id">
+              {{ service.serviceName }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <h3>Selected Service Details:</h3>
+
+    <!-- Display selected service details -->
+    <div class="service-details" *ngIf="selectedService">
+      <!-- Image on the left -->
+      <div class="service-image">
+        <img src="https://s6.imgcdn.dev/EoFch.jpg" alt="Service Image" />
+      </div>
+
+      <!-- Details on the right -->
+      <div class="service-info">
+        <p><strong>Service Name:</strong> {{ selectedService.serviceName }}</p>
+        <p>
+          <strong>Description:</strong> {{ selectedService.serviceDescription }}
+        </p>
+        <p>
+          <strong>Price:</strong> {{ selectedService.price }}
+          {{ selectedService.currency }}
+        </p>
+      </div>
+    </div>
+    <div class="dropdown-container">
+      <div class="dropdown-item">
+        <label for="carpender">Select Carpender:</label>
+        <div class="custom-dropdown">
+          <select id="Carpender" [(ngModel)]="selectedCarpenderId">
+            <option
+              *ngFor="let service of carpenders"
+              [value]="service.carpenderId"
+            >
+              {{ service.carpenderName }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="dropdown-item">
+        <label for="datetime">Select Date and Time:</label>
+        <div class="custom-dropdown">
+          <input type="date" id="date" [(ngModel)]="selectedDateTime" />
+        </div>
+      </div>
+    </div>
+
+    <div class="button-container">
+      <button (click)="onButtonClick(selectedCarpenderId)">Click Me</button>
     </div>
   </div>
-  
+</div>

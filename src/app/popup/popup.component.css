@@ -1,84 +1,236 @@
-/* Styling the overlay (background behind the popup) */
 .popup {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);  /* Semi-transparent background */
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;  /* Ensures the popup is above other elements */
+  z-index: 1100;
 }
 
-/* Styling the actual popup content */
 .popup-content {
   background-color: white;
-  padding: 20px;
+  padding: 40px;
   border-radius: 8px;
-  max-width: 600px;
+  max-width: 800px;
   width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1110;
 }
 
-/* Styling the close button */
+/* Close button styling */
 .close-button {
   position: absolute;
   top: 10px;
   right: 10px;
   font-size: 24px;
-  font-weight: bold;
-  color: #aaa;
   cursor: pointer;
 }
 
-.close-button:hover {
-  color: #000;
+/* Service details container */
+.service-details {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-top: 20px;
+  margin-left: 8%;
+  align-items: center;
 }
 
-/* Heading styling */
-h2 {
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #333;
+/* Image styling */
+.service-image img {
+  max-width: 300px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Service info styling */
+.service-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.service-info p {
+  margin: 10px 0;
+  font-size: 16px;
+  color: #555;
+}
+
+/* Responsive layout for mobile (screen width below 768px) */
+@media (max-width: 768px) {
+  .service-details {
+    flex-direction: column; /* Stack image and details vertically */
+    align-items: center;
+    text-align: center;
+  }
+
+  .service-image img {
+    max-width: 90%; /* Reduce image size for mobile */
+    margin-bottom: 20px;
+  }
+
+  .service-info {
+    width: 100%;
+  }
+
+  .service-info p {
+    font-size: 14px; /* Slightly smaller text for mobile */
+  }
+}
+
+/* Container for the dropdowns */
+.dropdown-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+/* Individual dropdown items */
+.dropdown-item {
+  flex: 1;
+}
+
+/* Styling for the dropdown container */
+.custom-dropdown {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Styling the select dropdown */
+select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  transition:
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+  outline: none;
+  appearance: none; /* For consistency across browsers */
+  -webkit-appearance: none; /* For Safari */
+  -moz-appearance: none; /* For Firefox */
+}
+
+/* Focus state for better user experience */
+select:focus {
+  border-color: #007bff;
+  background-color: #e9f4ff;
 }
 
 /* Label styling */
 label {
   font-size: 16px;
+  color: #333;
+  font-weight: 500;
   margin-bottom: 8px;
   display: block;
-  color: #555;
 }
 
-/* Dropdown styling */
-select {
-  width: 100%;
-  padding: 8px;
+/* Custom dropdown-item styling */
+.dropdown-item {
   margin-bottom: 20px;
+}
+
+/* Optional: Add a shadow effect to make the input stand out */
+select:hover {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive layout for mobile (screen width below 768px) */
+@media (max-width: 768px) {
+  .dropdown-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* Styling for the dropdown container */
+.custom-dropdown {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Styling the input date picker */
+input[type="date"] {
+  padding: 10px;
+  font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  transition:
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+  outline: none;
 }
 
-/* Display section for selected service details */
-.selected-service-details {
+/* Focus state for better user experience */
+input[type="date"]:focus {
+  border-color: #007bff;
+  background-color: #e9f4ff;
+}
+
+/* Label styling */
+label {
+  font-size: 16px;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Custom dropdown-item styling */
+.dropdown-item {
+  margin-bottom: 20px;
+}
+
+/* Optional: Add a shadow effect to make the input stand out */
+input[type="date"]:hover {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling the button */
+.button-container {
   margin-top: 20px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
 }
 
-.selected-service-details h3 {
-  font-size: 20px;
-  color: #444;
-}
-
-.selected-service-details p {
+button {
+  padding: 12px 24px;
   font-size: 16px;
-  color: #555;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-/* Ensure the popup content is not too close to the edges */
-.popup-content p {
-  font-size: 14px;
-  color: #666;
+/* Button hover effect */
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Button focus effect */
+button:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.6);
 }
