@@ -92,7 +92,6 @@ export class LoginComponent {
       email: this.username,
       password: this.password,
     };
-
     this.authService.loginUser(loginData).subscribe({
       next: (response) => {
         if (response && response.token) {

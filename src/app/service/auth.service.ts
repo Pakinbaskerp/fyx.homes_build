@@ -61,7 +61,7 @@ export class AuthService {
       'Content-Type': 'application/json',
     });
 
-    const apiUrl = `${this.baseApiUrl}/api/auth/login`;
+    const apiUrl = `${this.baseApiUrl}api/auth/login`;
 
     return this.http.post<LoginResponse>(apiUrl, loginData, { headers }).pipe(
       catchError((error) => {
@@ -79,7 +79,7 @@ export class AuthService {
       Accept: '*/*',
       'Content-Type': 'application/json',
     });
-    const url = `${this.baseApiUrl}/api/auth/register`;
+    const url = `${this.baseApiUrl}api/auth/register`;
 
     return this.http.post<LoginResponse>(url, registerData, { headers }).pipe(
       catchError((error) => {

@@ -50,3 +50,26 @@ export interface BookedDetailsDto {
   bookedDateTime: string; // DateTime can be represented as a string in ISO 8601 format
   bookedCarpenderName: string;
 }
+export interface ServiceDto {
+  id: string;
+  serviceName: string;
+  serviceDescription: string;
+  sortOrder: number;
+  fileName: string;
+  filePath: string;
+  price: number;
+  currency: string;
+}
+
+export interface CategoryDto {
+  id: string;
+  categoryName: string;
+  categoryDescription: string;
+  filePath: string;
+  sortOrder: number;
+}
+
+export interface GetAllServiceListDto {
+  category: CategoryDto;
+  services: ServiceDto[];
+}
