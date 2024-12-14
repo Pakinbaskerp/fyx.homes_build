@@ -1,5 +1,16 @@
 <div class="header-container">
   <img src="assets/FIXs.png" alt="Logo" class="logo" />
 
-  <!-- <h1 class="header-title">{{ title }}</h1> -->
+  <div class="hamburger-menu" (click)="toggleMenu($event)">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <div class="menu-items" *ngIf="isMenuOpen">
+    <ul>
+      <li><a (click)="navigateTo('profile')">Profile</a></li>
+      <li><a (click)="logout()">Logout</a></li>
+    </ul>
+  </div>
 </div>

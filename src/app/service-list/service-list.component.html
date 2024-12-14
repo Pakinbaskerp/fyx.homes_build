@@ -1,15 +1,68 @@
+<app-header></app-header>
 <div *ngIf="categories.length > 0; else noData">
-  <div class="category-list">
-    <div *ngFor="let category of categories" class="category-item">
-      <img
-        [src]="category.filePath"
-        alt="{{ category.categoryName }}"
-        class="category-image"
-      />
-      <h3>{{ category.categoryName }}</h3>
-      <p>{{ category.categoryDescription }}</p>
+  <nav class="category-navbar">
+    <div class="category-navbar-left">
+      <span class="brand">My Brand</span>
+    </div>
+    <div class="category-navbar-right">
+      <span class="cart-icon">🛒</span>
+    </div>
+  </nav>
+</div>
+<div class="main-content">
+  <div class="main-content-left">
+    <!-- Add content here if needed -->
+  </div>
+  <div class="main-content-center">
+    <div class="packages-container">
+      <h1>Packages</h1>
+      <div *ngFor="let category of services" class="category-card">
+        <!-- Category Title -->
+        <h2 class="category-title">{{ category.category.categoryName }}</h2>
+
+        <!-- Services List -->
+        <div *ngFor="let service of category.services" class="service-card">
+          <div class="service-details">
+            <h3 class="service-title">{{ service.serviceName }}</h3>
+            <p class="service-rating">
+              <span class="rating-icon">⭐</span>
+              {{ 1+1 }} ({{ 2+1 }} reviews)
+            </p>
+            <p class="service-price">
+              <strong>Starts at ₹{{ service.price }}</strong>
+            </p>
+            <!-- <ul class="service-features">
+              <li *ngFor="let feature of service.features">{{ feature }}</li>
+            </ul> -->
+            <a href="#" class="service-link">View details</a>
+          </div>
+
+          <!-- Service Actions -->
+          <div class="service-actions">
+            <img [src]="service.filePath" alt="{{ service.fileName }}" class="service-image" />
+            <button class="add-button" (click)="addToCart(service.id)">Add</button>
+            <p class="options-info">{{ service.currency }} options</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+  <div class="main-content-right">
+    <h2>Cart Items</h2>
+    <div *ngIf="cartItems && cartItems.length > 0; else emptyCart">
+      <div *ngFor="let item of cartItems" class="cart-item">
+        <h3>{{ item.serviceName }}</h3>
+        <p>{{ item.serviceDescription }}</p>
+        <p><strong>Price:</strong> {{ item.price }} {{ item.currency }}</p>
+        <p><strong>Sort Order:</strong> {{ item.sortOrder }}</p>
+        <a [href]="item.filePath" target="_blank">{{ item.fileName }}</a>
+      </div>
+    </div>
+    <ng-template #emptyCart>
+      <p>Your cart is empty.</p>
+    </ng-template>
+  </div>
+  
 </div>
 
 <ng-template #noData>

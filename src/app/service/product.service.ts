@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import {
   CarpenterDetailsDto,
   CreateServiceDto,
+  GetAllServiceListDto,
   GetCategoryListDto,
 } from '../dtos/apiDtos';
 import { environment } from '../../../common.constant';
@@ -31,10 +32,21 @@ export class ProductService {
       'Content-Type': 'application/json',
     });
 
-    const apiUrl = `${this.baseApiUrl}/api/product/category/service`;
+    const apiUrl = `${this.baseApiUrl}api/product/category/service`;
     return this.http.get<CreateServiceDto[]>(
       `${apiUrl}?category-id=${categoryId}`,
     );
+  }
+
+  getCategoryServiceList(){
+    const headers = new HttpHeaders({
+      Accept: '*/*',
+      'Content-Type': 'application/json',
+    });
+
+    const apiUrl = `${this.baseApiUrl}api/product/categoryId/get-all`;
+    return this.http.get<GetAllServiceListDto[]>(apiUrl, { headers });
+
   }
 
   geCarpenderList() {
@@ -43,7 +55,7 @@ export class ProductService {
       'Content-Type': 'application/json',
     });
 
-    const apiUrl = `${this.baseApiUrl}/api/carpender/list`;
+    const apiUrl = `${this.baseApiUrl}api/carpender/list`;
     return this.http.get<CarpenterDetailsDto[]>(apiUrl, { headers });
   }
 }

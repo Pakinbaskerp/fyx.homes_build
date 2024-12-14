@@ -1,45 +1,203 @@
-/* service-list.component.css */
-.category-item {
-  border: 1px solid #ccc;
-  padding: 20px;
+.category-navbar {
+  display: flex;
+  justify-content: space-between; /* Adjusts space between left, center (categories), and right */
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(255, 251, 0, 0.1);
-  text-align: center;
-  background-color: rgb(253, 207, 41);
 }
 
-.category-image {
-  width: 100%;
-  height: auto;
-  max-width: 200px;
-  margin-bottom: 15px;
+.category-navbar-left, .category-navbar-right {
+  flex: 1; /* Allocates space equally to left and right sections */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Aligns content in the left section */
 }
 
-h3 {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
+.category-navbar-right {
+  justify-content: flex-end; /* Aligns content in the right section */
 }
 
-p {
-  font-size: 1rem;
+.category-nav-list {
+  flex: 2; /* Adjusts size of the central navigation area */
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+}
+
+.category-nav-item {
+  font-size: 16px;
+}
+
+.category-nav-link {
+  cursor: pointer;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.category-nav-link:hover {
+  color: rgb(253, 207, 41);
+}
+
+.brand {
+  font-size: 18px;
+  font-weight: bold;
   color: #555;
 }
 
-.category-list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+.cart-icon {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.main-content{
+  color: white;
+}
+
+.main-content {
+  display: flex; /* Enables flex layout for left and right sections */
+  justify-content: space-between;
+  gap: 2px;
+}
+
+.main-content-left {
+  flex: 1; /* Allocates space for the left section */
+  
   padding: 20px;
+  background-color: #d1c479;
+  /* border: 1px solid #ddd; */
+  border-radius: 8px;
 }
 
-@media screen and (max-width: 768px) {
-  .category-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.main-content-right {
+  flex: 1; /* Allocates space for the right section */
+
+  padding: 20px;
+  background-color: #d1c479;
+  /* border: 1px solid #ddd; */
+  border-radius: 8px;
 }
 
-@media screen and (max-width: 480px) {
-  .category-list {
-    grid-template-columns: 1fr;
-  }
+.main-content-center {
+  flex: 2; /* Allocates space for the right section */
+  
+  padding: 20px;
+  background-color: #000000;
+  /* border: 1px solid #ddd; */
+  border-radius: 8px;
+}
+
+.packages-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  max-height: 400px; /* Adjust this value to your preference */
+  overflow-y: scroll; /* Content can still scroll */
+  border: 1px solid #ddd;
+
+  /* Hides scrollbar */
+  scrollbar-width: none; /* Firefox */
+  padding: 20px;
+  border: 1px solid #ddd;
+}
+.packages-container::-webkit-scrollbar {
+  display: none; /* Hides scrollbar for Chrome, Safari, and Edge */
+ }
+.category-card {
+  margin-bottom: 30px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 20px;
+}
+
+.category-title {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.service-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.service-details {
+  flex: 1;
+}
+
+.service-title {
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: #007bff;
+}
+
+.service-rating {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.service-price {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.service-features {
+  font-size: 14px;
+  color: #555;
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.service-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.service-link:hover {
+  text-decoration: underline;
+}
+
+.service-actions {
+  text-align: center;
+}
+
+.service-image {
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.add-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.add-button:hover {
+  background-color: #0056b3;
+}
+
+.options-info {
+  font-size: 12px;
+  color: #555;
+  margin-top: 5px;
 }
