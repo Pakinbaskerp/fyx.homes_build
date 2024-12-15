@@ -20,6 +20,7 @@ export class ServiceListComponent implements OnInit {
   selectedCategoryName = '';
   services: GetAllServiceListDto[] = [];
   cartItems: ServiceDto[] = [];
+  isCartVisible = false; 
 
   constructor(
     private router: Router,
@@ -77,5 +78,8 @@ export class ServiceListComponent implements OnInit {
         alert('Could not load cart items.');
       }
     });
+  }
+  toggleCart() {
+    this.isCartVisible = !this.isCartVisible;
   }
 }
