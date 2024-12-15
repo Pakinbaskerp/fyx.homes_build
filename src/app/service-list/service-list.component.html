@@ -1,18 +1,16 @@
 <app-header></app-header>
-<div *ngIf="categories.length > 0; else noData">
-  <nav class="category-navbar">
-    <div class="category-navbar-left">
-      <span class="brand">My Brand</span>
-    </div>
-    <div class="category-navbar-right">
-      <span class="cart-icon">🛒</span>
-    </div>
-  </nav>
+
+<div class="category-navbar-right">
+  <span class="cart-icon" (click)="toggleCart()">
+    🛒
+    <span class="cart-count-badge" *ngIf="cartItems.length > 0">
+      {{ cartItems.length }}
+    </span>
+  </span>
 </div>
+
 <div class="main-content">
-  <div class="main-content-left">
-    <!-- Add content here if needed -->
-  </div>
+  
   <div class="main-content-center">
     <div class="packages-container">
       <h1>Packages</h1>
@@ -47,7 +45,7 @@
       </div>
     </div>
   </div>
-  <div class="main-content-right">
+  <!-- <div class="main-content-right">
     <h2>Cart Items</h2>
     <div *ngIf="cartItems && cartItems.length > 0; else emptyCart">
       <div *ngFor="let item of cartItems" class="cart-item">
@@ -61,10 +59,27 @@
     <ng-template #emptyCart>
       <p>Your cart is empty.</p>
     </ng-template>
-  </div>
+  </div> -->
   
 </div>
 
 <ng-template #noData>
   <p>No categories available.</p>
 </ng-template>
+<div class="cart-popup" *ngIf="isCartVisible">
+  <div class="cart-popup-content">
+    <h2>Your Cart</h2>
+    <div *ngIf="cartItems && cartItems.length > 0; else emptyCart">
+      <div *ngFor="let item of cartItems" class="cart-item">
+        <h3>{{ item.serviceName }}</h3>
+        <p>{{ item.serviceDescription }}</p>
+        <p><strong>Price:</strong> {{ item.price }} {{ item.currency }}</p>
+        <a [href]="item.filePath" target="_blank">{{ item.fileName }}</a>
+      </div>
+    </div>
+    <ng-template #emptyCart>
+      <p>Your cart is empty.</p>
+    </ng-template>
+    <button class="close-button" (click)="toggleCart()">Close</button>
+  </div>
+</div>
