@@ -22,7 +22,7 @@ export class ProductService {
       'Content-Type': 'application/json',
     });
 
-    const apiUrl = `${this.baseApiUrl}/api/product/category`;
+    const apiUrl = `${this.baseApiUrl}api/product/category`;
     return this.http.get<GetCategoryListDto[]>(apiUrl, { headers });
   }
 

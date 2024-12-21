@@ -29,6 +29,7 @@ export class LoginComponent {
   isTabSelected: boolean = false;
   isUser: boolean = this.userType === 'user';
   isCarpender: boolean = this.userType === 'carpenter';
+  private refreshTokenInterval: any;
 
   categories: GetCategoryListDto[] = [];
   constructor(
@@ -80,6 +81,25 @@ export class LoginComponent {
     });
   }
 
+  // startRefreshTokenTimer(): void {
+  //   // Call refresh token API every 15 minutes
+  //   console.log(this.refreshTokenInterval)
+  //   this.refreshTokenInterval = setInterval(() => {
+  //     this.authService.refreshToken().subscribe({
+  //       next: (response) => {
+  //         console.log('Refresh token successful:', response);
+  //         // Optionally update the token in localStorage
+  //         if (response && response.token) {
+  //           localStorage.setItem('accessToken', response.accessToken);
+  //         }
+  //       },
+  //       error: (error) => {
+  //         console.error('Error refreshing token:', error);
+  //       },
+  //     });
+  //   }, 1 * 60 * 1000); // 15 minutes
+  // }
+
   onLogin(event: Event): void {
     event.preventDefault();
 
@@ -110,6 +130,8 @@ export class LoginComponent {
             }
 
             localStorage.setItem('authToken', token);
+            localStorage.setItem('accessToken', response.accessToken);
+            this.authService.startRefreshTokenTimer();
           }
         } else {
           alert('Invalid credentials');
@@ -124,4 +146,11 @@ export class LoginComponent {
       },
     });
   }
+
+  // stopRefreshTokenTimer(): void {
+  //   if (this.refreshTokenInterval) {
+  //     clearInterval(this.refreshTokenInterval); // Clear the interval
+  //     this.refreshTokenInterval = null;
+  //   }
+  // }
 }
