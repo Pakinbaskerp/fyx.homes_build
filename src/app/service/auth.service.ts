@@ -3,8 +3,9 @@ import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from '../../../common.constant';
-import { GetCategoryListDto, LoginResponse } from '../dtos/apiDtos';
+import { GetCategoryListDto, LoginResponse, RefreshTokenDto } from '../dtos/apiDtos';
 import { isPlatformBrowser } from '@angular/common';
+import { Route, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,9 @@ import { isPlatformBrowser } from '@angular/common';
 export class AuthService {
   private baseApiUrl = environment.apiBaseUrl;
 
-  constructor(private http: HttpClient) {}
+  private refreshTokenInterval: any;
+
+  constructor(private http: HttpClient, private router: Router) {}
 
   private platformId = inject(PLATFORM_ID);
 
@@ -27,6 +30,7 @@ export class AuthService {
           if (decoded.exp && decoded.exp > currentTime) {
             return true;
           } else {
+            localStorage.removeItem('authToken');
             this.logout();
             return false;
           }
@@ -41,7 +45,10 @@ export class AuthService {
   }
 
   logout(): void {
+    this.stopRefreshTokenTimer(); // Stop the refresh token timer on logout
     localStorage.removeItem('authToken');
+    localStorage.removeItem('accessToken');
+    this.router.navigate(['/login']);
   }
 
   isJwt(token: string): boolean {
@@ -52,6 +59,32 @@ export class AuthService {
   decodeJwt(token: string): any {
     const payload = token.split('.')[1];
     return JSON.parse(atob(payload));
+  }
+
+  startRefreshTokenTimer(): void {
+    // Call refresh token API every 15 minutes
+    this.refreshTokenInterval = setInterval(() => {
+      this.refreshToken().subscribe({
+        next: (response) => {
+          console.log('Refresh token successful:', response);
+          if (response && response.token) {
+            // localStorage.setItem('authToken', response.token);
+            localStorage.setItem('accessToken', response.accessToken);
+          }
+        },
+        error: (error) => {
+          console.error('Error refreshing token:', error);
+          this.logout();
+        },
+      });
+    }, 15 * 60 * 1000); // 15 minutes
+  }
+
+  stopRefreshTokenTimer(): void {
+    if (this.refreshTokenInterval) {
+      clearInterval(this.refreshTokenInterval); 
+      this.refreshTokenInterval = null;
+    }
   }
 
   loginUser(loginData: any) {
@@ -71,6 +104,22 @@ export class AuthService {
         );
         return of(null);
       }),
+    );
+  }
+  refreshToken() {
+    const refreshTokenDto = {
+      token: localStorage.getItem('refreshToken') || '', // Replace with the actual refresh token key
+      accessToken: localStorage.getItem('accessToken') || '', // Replace with the correct access token key
+    };
+    const headers = new HttpHeaders({
+      Accept: '*/*',
+      'Content-Type': 'application/json',
+    });
+    
+    return this.http.post<RefreshTokenDto>(
+      `${this.baseApiUrl}api/auth/refresh-token`,
+      refreshTokenDto,
+      {headers}
     );
   }
 

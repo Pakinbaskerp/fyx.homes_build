@@ -1,6 +1,10 @@
 export interface LoginResponse {
   token: string;
+  accessToken: string;
   email: string;
+  isSuccess: string;
+  message: string;
+  
 }
 
 export interface GetCategoryListDto {
@@ -72,4 +76,9 @@ export interface CategoryDto {
 export interface GetAllServiceListDto {
   category: CategoryDto;
   services: ServiceDto[];
+}
+
+export interface RefreshTokenDto {
+  token: string;
+  accessToken: string;
 }
