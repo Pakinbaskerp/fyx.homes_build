@@ -12,4 +12,13 @@ export class FooterComponent {
   goToService(){
     this.router.navigate(['/service']);
   }
+  goToHome(){
+    this.router.navigate(['/dashboard']);
+  }
+  goToAbout(){
+    this.router.navigate(['/about']);
+  }
+  goToContact(){
+    this.router.navigate(['/contact']);
+  }
 }

@@ -77,7 +77,7 @@ export class AuthService {
           this.logout();
         },
       });
-    }, 15 * 60 * 1000); // 15 minutes
+    }, 14 * 60 * 1000); // 15 minutes
   }
 
   stopRefreshTokenTimer(): void {
