@@ -3,17 +3,17 @@
     <nav class="footer-nav">
       <ul class="menu">
         <li>
-          <a href="#home"><i class="fas fa-home"></i> Home</a>
-        </li>
-        <li>
-          <a href="#about"><i class="fas fa-info-circle"></i> About</a>
+          <a (click)="goToHome()"><i class="fas fa-home"></i> Home</a>
         </li>
         <li>
           <a (click)="goToService()"><i class="fas fa-cogs"></i> Services</a>
         </li>
         <li>
-          <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+          <a (click)="goToAbout()"><i class="fas fa-info-circle"></i> About</a>
         </li>
+        <!-- <li>
+          <a (click)="goToAbout()"><i class="fas fa-envelope"></i> Contact</a>
+        </li> -->
       </ul>
     </nav>
   </div>

@@ -6,11 +6,12 @@ import { CommonModule } from '@angular/common';
 import { ProductService } from '../service/product.service';
 import { HeaderComponent } from "../header/header.component";
 import { BookingService } from '../service/booking.service';
+import { FooterComponent } from "../footer/footer.component";
 
 @Component({
   selector: 'app-service-list',
   standalone: true,
-  imports: [CommonModule, HeaderComponent],
+  imports: [CommonModule, HeaderComponent, FooterComponent],
   templateUrl: './service-list.component.html',
   styleUrls: ['./service-list.component.css'],
 })
