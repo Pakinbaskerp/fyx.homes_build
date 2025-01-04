@@ -1,5 +1,5 @@
 .hero-section {
-  height: 100vh;
+  height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,13 +26,13 @@
 .hero-button {
   padding: 10px 20px;
   font-size: 1rem;
-  color: rgb(253, 207, 41);
+  color: var(--primary-color);
   background-color: rgba(0, 0, 0, 0.8);
   text-decoration: none;
   border-radius: 5px;
 }
 
 .hero-button:hover {
-  background-color: rgb(253, 207, 41);
+  background-color: var(--primary-color);
   color: #fff;
 }

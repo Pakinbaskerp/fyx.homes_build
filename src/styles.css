@@ -1,20 +1,15 @@
-html,
-body {
-  height: 100%;
-  overflow: hidden;
-  margin: 0;
-  background-color: black; /* Full black background */
-  color: rgb(0, 0, 0);
-  padding-bottom: 60px; /* Space for the footer */
-}
-body.popup-open {
-  overflow: hidden;
+:root {
+  --primary-color: #FDCF29; /* Forest Green */
+  --secondary-color: #8B4513; /* Woody Brown */
+  --text-color: #333;
+  --background-color: #f4f4f4;
+
+  /* Fonts */
+  --primary-font: 'Roboto Mono', monospace; 
 }
 
-
-main {
-  min-height: 100vh; /* Ensure the content takes full height */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+* {
+  
+  font-family: var(--primary-font) !important; /* Ensure it's applied to all elements */
 }
+
