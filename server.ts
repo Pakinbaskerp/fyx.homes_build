@@ -1,55 +1,15 @@
-import 'zone.js/node'; // Required for Angular SSR
-import express from 'express';
-import { existsSync } from 'fs';
-import { join } from 'path';
-import { APP_BASE_HREF } from '@angular/common';
-import { renderApplication } from '@angular/platform-server';
-import bootstrap from './src/main.server';
+// server.ts — Netlify compatible
+import { CommonEngine } from '@angular/ssr/node';
+import { render } from '@netlify/angular-runtime/common-engine.mjs';
 
-// Express server
-export function app(): express.Express {
-  const server = express();
-  const distFolder = join(process.cwd(), 'dist/browser');
-  const indexHtml = existsSync(join(distFolder, 'index.original.html'))
-    ? 'index.original.html'
-    : 'index.html';
+const commonEngine = new CommonEngine();
 
-  server.set('view engine', 'html');
-  server.set('views', distFolder);
+export async function netlifyCommonEngineHandler(request: Request, context: any): Promise<Response> {
+  // Optional: define API endpoints here
+  // const pathname = new URL(request.url).pathname;
+  // if (pathname === '/api/hello') {
+  //   return Response.json({ message: 'Hello from the API' });
+  // }
 
-  // Static files
-  server.get(
-    '*.*',
-    express.static(distFolder, {
-      maxAge: '1y',
-    })
-  );
-
-  // Angular SSR handler
-  server.get('*', async (req, res, next) => {
-    try {
-      const html = await renderApplication(bootstrap, {
-        document: join(distFolder, indexHtml),
-        url: req.originalUrl,
-        platformProviders: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }], // FIXED!
-      });
-
-      res.send(html);
-    } catch (err) {
-      next(err);
-    }
-  });
-
-  return server;
+  return await render(commonEngine);
 }
-
-// Start the server
-function run(): void {
-  const port = process.env['PORT'] || 4000;
-  const server = app();
-  server.listen(port, () => {
-    console.log(`Node Express server listening on http://localhost:${port}`);
-  });
-}
-
-run();
