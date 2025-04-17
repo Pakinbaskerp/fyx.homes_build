@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { InputTextModule } from 'primeng/inputtext';
+import { FloatLabelModule } from 'primeng/floatlabel'; // Import this
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../service/auth.service';
 import { GetCategoryListDto, LoginDto } from '../dtos/apiDtos';
@@ -11,10 +11,12 @@ import { GetCategoryListDto, LoginDto } from '../dtos/apiDtos';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, RouterModule, CommonModule],
+  imports: [FormsModule, RouterModule, CommonModule, InputTextModule, FloatLabelModule], 
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
+
+
 export class LoginComponent {
   isLoginTab: boolean = true;
   username: string = '';

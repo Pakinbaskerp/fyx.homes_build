@@ -55,7 +55,7 @@ export class ProductService {
       'Content-Type': 'application/json',
     });
 
-    const apiUrl = `${this.baseApiUrl}api/carpender/list`;
+    const apiUrl = `${this.baseApiUrl}api/carpenter/list`;
     return this.http.get<CarpenterDetailsDto[]>(apiUrl, { headers });
   }
 }

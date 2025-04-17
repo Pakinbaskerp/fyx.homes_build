@@ -41,7 +41,7 @@
     <div class="service-details" *ngIf="selectedService">
       <!-- Image on the left -->
       <div class="service-image">
-        <img src="https://s6.imgcdn.dev/EoFch.jpg" alt="Service Image" />
+        <img src="{{ selectedService.filePath }}" alt="Service Image" />
       </div>
 
       <!-- Details on the right -->
@@ -63,9 +63,9 @@
           <select id="Carpender" [(ngModel)]="selectedCarpenderId">
             <option
               *ngFor="let service of carpenders"
-              [value]="service.carpenderId"
+              [value]="service.carpenterId"
             >
-              {{ service.carpenderName }}
+              {{ service.carpenterName }}
             </option>
           </select>
         </div>
@@ -76,6 +76,7 @@
           <input type="date" id="date" [(ngModel)]="selectedDateTime" />
         </div>
       </div>
+      
     </div>
 
     <div class="button-container">

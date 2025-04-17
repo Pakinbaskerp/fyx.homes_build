@@ -8,13 +8,14 @@ import {
   GetCategoryListDto,
 } from '../dtos/apiDtos';
 import { FormsModule } from '@angular/forms';
-import { error } from 'node:console';
+import { DatePickerModule } from 'primeng/datepicker';
+import { CalendarModule } from 'primeng/calendar';
 import { BookingService } from '../service/booking.service';
 
 @Component({
   selector: 'app-popup',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, DatePickerModule, CalendarModule],
   templateUrl: './popup.component.html',
   styleUrls: ['./popup.component.css'],
 })

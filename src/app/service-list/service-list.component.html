@@ -1,56 +1,53 @@
 <app-header></app-header>
 
-<div class="category-navbar-right">
-  <span class="cart-icon" (click)="toggleCart()">
-    🛒
-    <span class="cart-count-badge" *ngIf="true || cartItems.length > 0">
-      2
-    </span>
-  </span>
-</div>
+<div class="container mt-4">
+  <!-- <h1 class="text-center">Packages</h1> -->
 
-<div class="main-content">
-  <div class="main-content-center">
-    <div class="packages-container">
-      <h1>Packages</h1>
-      <div
-        *ngIf="services.length > 0; else noData"
-        class="category-cards-container"
-      >
-        <div *ngFor="let category of services" class="category-card">
-          <h2 class="category-title">{{ category.category.categoryName }}</h2>
-          <div *ngFor="let service of category.services" class="service-card">
-            <img
-              [src]="service.filePath"
-              alt="{{ service.fileName }}"
-              class="service-image"
-            />
-            <div class="service-details">
-              <h3 class="service-title">{{ service.serviceName }}</h3>
-              <!-- <p class="service-rating">
-                <span class="rating-icon">⭐</span>
-                {{ 1 + 1 }} ({{ 2 + 1 }} reviews)
-              </p> -->
-              <p class="service-price">
-                <strong>₹{{ service.price }}</strong>
-              </p>
-              <a href="#" class="service-link">View details</a>
-              <button class="add-button" (click)="addToCart(service.id)">
-                Add
-              </button>
-              <p class="options-info">{{ service.currency }} options</p>
+  <div *ngIf="services.length > 0; else noData">
+    <div *ngFor="let category of services" class="mb-4">
+      <h2 class="category-title text-center">{{ category.category.categoryName }}</h2>
+
+      <div class="row">
+        <div *ngFor="let service of category.services" class="col-md-6 col-12 mb-3">
+          <div class="card p-2 shadow-sm">
+            <div class="row g-0 align-items-center">
+              <!-- Image Section (25%) -->
+              <div class="col-4">
+                <img
+                  [src]="service.filePath"
+                  alt="{{ service.fileName }}"
+                  class="img-fluid rounded"
+                />
+              </div>
+
+              <!-- Content Section (75%) -->
+              <div class="col-8">
+                <div class="card-body">
+                  <h5 class="service-title">{{ service.serviceName }}</h5>
+                  <p class="service-price mb-1">
+                    <strong>₹{{ service.price }}</strong>
+                  </p>
+                  <p class="options-info small text-muted">{{ service.currency }} options</p>
+                  <div class="d-flex justify-content-between">
+                    <button class="btn btn-sm" (click)="addToCart(service.id)">
+                      Add
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <ng-template #noData>
+    <p class="text-center text-muted">No categories available.</p>
+  </ng-template>
 </div>
 
-<ng-template #noData>
-  <p>No categories available.</p>
-</ng-template>
-
+<!-- Cart Popup -->
 <div class="cart-popup" *ngIf="isCartVisible">
   <div class="cart-popup-content">
     <h2>Your Cart</h2>

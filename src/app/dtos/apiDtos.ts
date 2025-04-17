@@ -32,8 +32,8 @@ export interface CreateServiceDto {
 }
 
 export interface CarpenterDetailsDto {
-  carpenderId: string;
-  carpenderName: string;
+  carpenterId: string;
+  carpenterName: string;
   phoneNumber?: string;
   email?: string;
   address?: string;
