@@ -4,17 +4,19 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../service/auth.service';
 
+import { SidebarModule } from 'primeng/sidebar';
+
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, SidebarModule],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
   title: string = environment.homeTitle;
   isMenuOpen = false;
-
+  displaySidebar: boolean = false;
   constructor(private router: Router,private authService: AuthService) {}
 
   toggleMenu(event: Event) {
@@ -33,6 +35,10 @@ export class HeaderComponent {
   navigateTo(route: string) {
     this.isMenuOpen = false;
     this.router.navigate([route]);
+  }
+
+  toggleSidebar() {
+    this.displaySidebar = !this.displaySidebar;
   }
 
   logout() {

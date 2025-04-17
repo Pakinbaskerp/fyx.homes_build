@@ -1,11 +1,11 @@
 :root {
-  --primary-color: #FDCF29; /* Forest Green */
+  --primary-color:  #FDCF29; /* Forest Green */
   --secondary-color: #8B4513; /* Woody Brown */
   --text-color: #333;
   --background-color: #f4f4f4;
 
   /* Fonts */
-  --primary-font: 'Roboto Mono', monospace; 
+  --primary-font: 'Poppins', monospace; 
 }
 
 * {
@@ -13,3 +13,25 @@
   font-family: var(--primary-font) !important; /* Ensure it's applied to all elements */
 }
 
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(50deg, rgba(255, 255, 255, 0.8), rgba(248, 248, 248, 0.8)); /* Gold gradient */
+  backdrop-filter: blur(10px); /* Blur effect */
+  -webkit-backdrop-filter: blur(10px); /* For Safari */
+}
+
+.bg-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  object-fit: cover;
+  z-index: -1; /* Send the image behind all content */
+  filter: blur(5px) brightness(0.8); /* Blur effect */
+}

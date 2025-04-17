@@ -3,11 +3,15 @@
   bottom: 7px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgba(253, 207, 41, 0.8);
+  background: linear-gradient(50deg, 
+  #FFC107 10%, 
+  #ECF7C5 50%, 
+  #FFC107 100%);
   z-index: 999; /* Lower than the popup */
   padding: 15px 20px;
   border-radius: 20px;
   transition: background-color 0.3s ease;
+  color: black;
 }
 
 .footer-container:hover {
@@ -33,12 +37,15 @@
 
 .footer-nav .menu li a {
   text-decoration: none;
-  color: #ffffff;
+  color: #000000;
   font-weight: bold;
   margin: 18px;
   transition: color 0.3s ease; /* Smooth color transition */
 }
 
 .footer-nav .menu li a:hover {
-  color: #ffcc00; /* Highlight link color on hover */
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 10px; 
+  border-radius: 6px;
+  color: #FFC107;
 }

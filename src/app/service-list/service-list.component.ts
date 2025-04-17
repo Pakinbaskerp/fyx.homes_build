@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GetAllServiceListDto, ServiceDto } from '../dtos/apiDtos';
@@ -7,11 +6,13 @@ import { ProductService } from '../service/product.service';
 import { HeaderComponent } from "../header/header.component";
 import { BookingService } from '../service/booking.service';
 import { FooterComponent } from "../footer/footer.component";
+import { BadgeModule } from 'primeng/badge';
+import { OverlayBadgeModule } from 'primeng/overlaybadge';
 
 @Component({
   selector: 'app-service-list',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FooterComponent],
+  imports: [CommonModule, HeaderComponent, FooterComponent, BadgeModule, OverlayBadgeModule],
   templateUrl: './service-list.component.html',
   styleUrls: ['./service-list.component.css'],
 })

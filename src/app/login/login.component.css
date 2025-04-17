@@ -1,58 +1,168 @@
-.custom-tabs .nav-link {
-  color: #000000; /* Text color */
-  background-color: #ffffff; /* Default background color */
-  
-}
 
-.custom-tabs .nav-link.active {
-  background-color: var(--primary-color); /* Active tab background color */
-  border-color: var(--primary-color); /* Active tab border color */
+
+
+.custom-radio {
+  accent-color: #f8b400; /* Custom radio button color */
 }
 
 .buttons {
-  background-color: var(--primary-color); color: rgb(0, 0, 0); border: none
-}
-.custom-input {
-  border: 2px solid #ccc; /* Default border color */
-  border-radius: 5px; /* Rounded corners */
-  padding: 10px; /* Padding for better spacing */
-}
-
-.custom-input:focus {
-  border-color: var(--primary-color); /* Highlight border color */
-  box-shadow: 0 0 5px var(--primary-color); /* Glow effect */
-  outline: none; /* Remove default outline */
+  background: linear-gradient(50deg, #ECF7C5 100%, #FFC107 10%);
+  color: rgb(15, 15, 15);
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 5px;
+  transition: 0.3s;
+  
 }
 
-.custom-input:hover {
-  border-color: var(--primary-color); /* Slightly darker shade on hover */
+.buttons:hover {
+  background: linear-gradient(50deg, #FFC107 1%, #ECF7C5 70%);
+  color: black;
+  border: 2px solid #000000; 
 }
 
-/* Custom radio button styling */
-.form-check-input {
-  appearance: none; /* Remove default styles */
-  -webkit-appearance: none; /* For Safari */
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--primary-color); /* Border color */
-  border-radius: 50%; /* Make it round */
-  background-color: #fff; /* Background color */
-  transition: all 0.2s ease-in-out;
+.container {
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(45deg, 
+  #FFC107 10%, 
+  #ECF7C5 50%, 
+  #FFC107 100%);
+
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: black !important;  /* Change this to your preferred color */
+  box-shadow: none !important; /* Removes any glow effect */
+  outline: none !important;
+}
+
+
+.custom-radio {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ECF7C5; /* Yellow border */
+  border-radius: 50%;
+  outline: none;
+  transition: 0.2s all ease-in-out;
+  position: relative;
   cursor: pointer;
 }
 
-.form-check-input:checked {
-  background-color: var(--primary-color); /* Custom checked state color */
-  border-color: var(--primary-color); /* Border matches checked state */
+.custom-radio:checked {
+  background-color: #ECF7C5; /* Yellow fill */
+  border: 2px solid #ECF7C5;
 }
 
-.form-check-input:focus {
-  outline: none;
-  box-shadow: 0 0 4px 2px var(--primary-color); /* Add a glow effect */
+.custom-radio:checked::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-/* Adding a border to the form section */
-form {
-  border-top: 2px solid var(--primary-color);; /* Top border for form */
-  padding-top: 20px; /* Padding for top space */
+
+.nav-tabs .nav-item {
+  margin: 0 5px;
 }
+
+.nav-tabs .nav-link {
+  background: white;
+  color: #000000;
+  border: 1px solid #000000; /* Yellow border */
+  padding: 10px 20px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-tabs .nav-link:hover {
+  background: linear-gradient(50deg, rgba(252, 252, 252, 0.2) 10%,#ECF7C5 100%);
+}
+
+.nav-tabs .nav-link.active {
+  background: linear-gradient(45deg, 
+  #FFC107 10%, 
+  #ECF7C5 50%, 
+  #FFC107 100%);
+  color: rgb(0, 0, 0);
+  border-bottom: none;
+}
+
+.toggle-container {
+  position: relative;
+  width: 200px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toggle-switch {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.toggle-option {
+  flex: 1;
+  text-align: center;
+  z-index: 2;
+  padding: 8px 0;
+  cursor: pointer;
+}
+
+.toggle-slider {
+  position: absolute;
+  width: 50%;
+  height: 90%;
+  background: linear-gradient(45deg, 
+  #FFC107 10%, 
+  #ECF7C5 50%, 
+  #FFC107 100%);
+  border-radius: 20px;
+  left: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+#isCarpenter:checked ~ .toggle-switch .toggle-slider {
+  left: 50%;
+  background: linear-gradient(45deg, 
+  #FFC107 10%, 
+  #ECF7C5 50%, 
+  #FFC107 100%);
+}
+
+#isUser:checked ~ .toggle-switch .toggle-slider {
+  left: 5px;
+  background: linear-gradient(45deg, 
+  #FFC107 10%, 
+  #ECF7C5 50%, 
+  #FFC107 100%);
+}
+
+#isUser:checked ~ .toggle-switch label[for="isUser"],
+#isCarpenter:checked ~ .toggle-switch label[for="isCarpenter"] {
+  color: rgb(0, 0, 0);
+}
+
