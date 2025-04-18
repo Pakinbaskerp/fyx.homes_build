@@ -11,11 +11,11 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/fyx.homes",
             "index": "src/index.html",
-            "main": "src/main.ts",
+            "browser": "src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "assets": [
@@ -24,24 +24,27 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
-            ],
-            "scripts": []
+            "styles": ["src/styles.css",
+          "node_modules/bootstrap/dist/css/bootstrap.min.css"],
+            "scripts": [],
+            "server": "src/main.server.ts",
+            "prerender": true,
+            "ssr": {
+              "entry": "server.ts"
+            }
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2MB",
-                  "maximumError": "5MB"
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "10kB",
-                  "maximumError": "20kB"
+                  "maximumWarning": "2kB",
+                  "maximumError": "4kB"
                 }
               ],
               "outputHashing": "all"
@@ -65,36 +68,6 @@
             }
           },
           "defaultConfiguration": "development"
-        },
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "dist/fyx.homes-server",
-            "main": "src/main.server.ts",
-            "tsConfig": "tsconfig.server.json"
-          },
-          "configurations": {
-            "production": {
-              "outputHashing": "media",
-              "sourceMap": false,
-              "optimization": true
-            }
-          }
-        },
-        "prerender": {
-          "builder": "@angular-devkit/build-angular:prerender",
-          "options": {
-            "browserTarget": "fyx.homes:build:production",
-            "serverTarget": "fyx.homes:server:production",
-            "routes": [
-              "/",
-              "/login",
-              "/dashboard",
-              "/about",
-              "/service",
-              "/admin-dashboard"
-            ]
-          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n"
